@@ -708,6 +708,74 @@ header {
     margin-top: 3px;
 }
 
+/* ===== PAYMENT OPTIONS ===== */
+.payment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.payment-option {
+    position: relative;
+}
+
+.payment-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.payment-option label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: #f9f9f9;
+    font-weight: 500;
+}
+
+.payment-option input[type="radio"]:checked + label {
+    border-color: #b41525;
+    background-color: #fff5f5;
+    color: #b41525;
+}
+
+.payment-option label:hover {
+    border-color: #b41525;
+    background-color: #fff5f5;
+}
+
+.payment-option label i {
+    font-size: 1.5rem;
+    width: 24px;
+    text-align: center;
+}
+
+/* Responsive Payment Options */
+@media (max-width: 480px) {
+    .payment-options {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-option label {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .payment-option label i {
+        font-size: 1.3rem;
+    }
+}
+
 /* ===== CTA SECTION ===== */
 .cta-section {
     background-color: #1a1a1a;
@@ -817,69 +885,101 @@ header {
     line-height: 1.5;
 }
 
-/* ===== CONTACT SECTION ===== */
-.contact-section {
-    margin-bottom: 60px;
+/* ===== CTA SECTION ===== */
+.cta-section {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 60px 20px;
+    margin: 60px 0 0 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.contact-section h2 {
-    font-size: 2rem;
-    margin-bottom: 40px;
-    color: #1a1a1a;
-}
-
-.contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-}
-
-.contact-info {
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.contact-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #1a1a1a;
-}
-
-.contact-info h3 i {
-    color: #b41525;
-    margin-right: 10px;
-}
-
-.contact-info p {
-    color: #666;
-    margin-bottom: 15px;
-}
-
-.contact-info a {
-    color: #b41525;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.contact-info a:hover {
-    color: #920f1a;
-    text-decoration: underline;
-}
-
-.contact-image {
-    background-color: #ddd;
-    border-radius: 12px;
-    aspect-ratio: 1;
+.cta-content {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    color: #999;
+    gap: 40px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
+.cta-text {
+    flex: 1;
+    min-width: 250px;
+}
+
+.cta-text h3 {
+    font-size: 1.8rem;
+    margin: 0;
+    line-height: 1.4;
+    font-weight: 700;
+    color: white;
+}
+
+.btn-cta {
+    background-color: #b41525;
+    color: white;
+    white-space: nowrap;
+    padding: 12px 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-cta:hover {
+    background-color: #920f1a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(180, 21, 37, 0.3);
+}
+
+/* Responsive CTA */
+@media (max-width: 768px) {
+    .cta-section {
+        padding: 40px 20px;
+        margin: 40px 0 0 0;
+    }
+
+    .cta-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .cta-text h3 {
+        font-size: 1.5rem;
+    }
+
+    .btn-cta {
+        white-space: normal;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-section {
+        padding: 30px 15px;
+        margin: 30px 0 0 0;
+    }
+
+    .cta-text h3 {
+        font-size: 1.3rem;
+    }
+
+    .btn-cta {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
 /* ===== FOOTER ===== */
 footer {
     background-color: #1a1a1a;
