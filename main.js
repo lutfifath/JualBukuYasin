@@ -1,4 +1,4 @@
-// Main JavaScript Functions
+// ===== MAIN JAVASCRIPT FUNCTIONS =====
 
 // Update active navigation link
 document.addEventListener('DOMContentLoaded', function() {
@@ -32,31 +32,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add to cart function (from index.html)
-function addToCart(name, price) {
-    const cart = getCart();
-    const existingItem = cart.find(item => item.name === name);
-
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({
-            name: name,
-            price: price,
-            quantity: 1
-        });
-    }
-
-    saveCart(cart);
-    updateCartCount();
-    showNotification(`${name} ditambahkan ke keranjang!`);
-    
-    // Optional: redirect to cart after 1 second
-    // setTimeout(() => {
-    //     window.location.href = 'keranjang.html';
-    // }, 1000);
-}
-
 // Format currency
 function formatCurrency(amount) {
     return new Intl.NumberFormat('id-ID', {
@@ -79,5 +54,4 @@ function debounce(func, wait) {
     };
 }
 
-// Log for debugging
-console.log('Main JS loaded successfully');
+console.log('✅ Main JS loaded successfully');
