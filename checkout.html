@@ -73,24 +73,49 @@
                         
                         <div class="form-group">
                             <label for="address">Alamat Lengkap <span class="required">*</span></label>
-                            <textarea id="address" name="address" placeholder="Alamat Lengkap, RT/RW, nomor desb" required></textarea>
+                            <textarea id="address" name="address" placeholder="Contoh: Jl. Merdeka No. 4, Kel. Lambangkuning" required></textarea>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="city">Kota <span class="required">*</span></label>
-                                <input type="text" id="city" name="city" placeholder="Kota" required>
+                                <input type="text" id="city" name="city" placeholder="Nganjuk" required>
                             </div>
                             <div class="form-group">
                                 <label for="province">Provinsi <span class="required">*</span></label>
-                                <input type="text" id="province" name="province" placeholder="Provinsi" required>
+                                <input type="text" id="province" name="province" placeholder="Jawa Timur" required>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="zipcode">Kode Pos <span class="required">*</span></label>
-                                <input type="text" id="zipcode" name="zipcode" placeholder="12345" required>
+                                <input type="text" id="zipcode" name="zipcode" placeholder="64315" required>
+                            </div>
+                        </div>
+                    </div>
+
+                                        <!-- Payment Method -->
+                    <div class="form-section">
+                        <h2 class="form-title">Metode Pembayaran</h2>
+                        
+                        <div class="form-group">
+                            <label>Pilih Metode Pembayaran <span class="required">*</span></label>
+                            <div class="payment-options">
+                                <div class="payment-option">
+                                    <input type="radio" id="cod" name="payment" value="COD" checked>
+                                    <label for="cod">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        <span>Bayar di Tempat (COD)</span>
+                                    </label>
+                                </div>
+                                <div class="payment-option">
+                                    <input type="radio" id="transfer" name="payment" value="Transfer Bank">
+                                    <label for="transfer">
+                                        <i class="fas fa-university"></i>
+                                        <span>Transfer Bank</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -101,11 +126,11 @@
                         
                         <div class="form-group">
                             <label for="notes">Catatan (Opsional)</label>
-                            <textarea id="notes" name="notes" placeholder="Isi deskripsi atau catatan khusus"></textarea>
+                            <textarea id="notes" name="notes" placeholder="Contoh: Paket dikirim pada hari kerja pagi"></textarea>
                         </div>
 
                         <div class="info-box">
-                            <i class="fas fa-info-circle"></i> Pesanan akan diarahkan ke WhatsApp untuk konfirmasi lebih lanjut.
+                            <i class="fas fa-info-circle"></i> Pesanan akan dikirimkan ke WhatsApp admin untuk konfirmasi dan pembayaran.
                         </div>
                     </div>
                 </form>
@@ -134,15 +159,18 @@
                     <span id="total">Rp. 0</span>
                 </div>
 
-                <button type="button" class="btn btn-primary" onclick="submitCheckout()">
-                    <i class="fab fa-whatsapp"></i> Pesan Sekarang via WhatsApp
+                <button type="button" class="btn btn-primary" onclick="submitCheckout()" style="width: 100%; margin-bottom: 10px;">
+                    <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
                 </button>
-                <a href="keranjang.html" class="btn btn-secondary">Kembali ke Keranjang</a>
+                <a href="keranjang.html" class="btn btn-secondary" style="width: 100%;">Kembali ke Keranjang</a>
             </div>
         </div>
 
-        <!-- CTA SECTION -->
-        <section class="cta-section">
+    </div>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="container">
             <div class="cta-content">
                 <div class="cta-text">
                     <h3>Mari Berikan Doa Terbaik untuk Almarhum / Almarhumah dengan Buku Yasin dan Tahlil</h3>
@@ -151,8 +179,8 @@
                     <i class="fab fa-whatsapp"></i> Hubungi Kami
                 </a>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
     <!-- FOOTER -->
     <footer>
@@ -199,108 +227,6 @@
         </div>
     </footer>
 
-    <script src="js/cart.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-        function loadCheckoutItems() {
-            const cart = getCart();
-            const container = document.getElementById('orderItems');
-            let subtotal = 0;
-
-            if (cart.length === 0) {
-                window.location.href = 'keranjang.html';
-                return;
-            }
-
-            let html = '';
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                subtotal += itemTotal;
-                html += `
-                    <div class="order-item">
-                        <div>
-                            <span>${item.name}</span><br>
-                            <small>x${item.quantity}</small>
-                        </div>
-                        <span>Rp. ${itemTotal.toLocaleString('id-ID')}</span>
-                    </div>
-                `;
-            });
-
-            container.innerHTML = html;
-            document.getElementById('subtotal').textContent = `Rp. ${subtotal.toLocaleString('id-ID')}`;
-            document.getElementById('total').textContent = `Rp. ${subtotal.toLocaleString('id-ID')}`;
-        }
-
-        function submitCheckout() {
-            const form = document.getElementById('checkoutForm');
-            
-            // Validasi form
-            if (!form.checkValidity()) {
-                alert('Mohon lengkapi semua field yang wajib diisi!');
-                return;
-            }
-
-            const cart = getCart();
-            const fullname = document.getElementById('fullname').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            const city = document.getElementById('city').value;
-            const province = document.getElementById('province').value;
-            const zipcode = document.getElementById('zipcode').value;
-            const notes = document.getElementById('notes').value;
-
-            // Buat pesan untuk WhatsApp
-            let message = `Halo Admin Buku Yasin!\n\n`;
-            message += `Saya ingin melakukan pemesanan dengan detail berikut:\n\n`;
-            message += `*DATA PEMBELI*\n`;
-            message += `Nama: ${fullname}\n`;
-            message += `Email: ${email}\n`;
-            message += `No. Telp: ${phone}\n\n`;
-            message += `*ALAMAT PENGIRIMAN*\n`;
-            message += `${address}\n`;
-            message += `${city}, ${province} ${zipcode}\n\n`;
-            message += `*PESANAN*\n`;
-            
-            let total = 0;
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-                message += `- ${item.name} x${item.quantity} = Rp. ${itemTotal.toLocaleString('id-ID')}\n`;
-            });
-            
-            message += `\n*TOTAL: Rp. ${total.toLocaleString('id-ID')}*\n\n`;
-            
-            if (notes) {
-                message += `*CATATAN*\n${notes}\n\n`;
-            }
-            
-            message += `Mohon konfirmasi ketersediaan dan biaya pengiriman. Terima kasih!`;
-
-            // Encode message untuk WhatsApp
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappLink = `https://api.whatsapp.com/send?phone=6287810860755&text=${encodedMessage}`;
-
-            // Clear cart dan redirect
-            saveCart([]);
-            updateCartCount();
-            
-            // Open WhatsApp
-            window.open(whatsappLink, '_blank');
-            
-            // Redirect ke halaman sukses
-            setTimeout(() => {
-                alert('Terima kasih! Pesanan Anda telah dikirim ke WhatsApp admin. Tunggu konfirmasi dari kami.');
-                window.location.href = 'index.html';
-            }, 1000);
-        }
-
-        // Load items on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            loadCheckoutItems();
-            updateCartCount();
-        });
-    </script>
+  <script src="js/app.js"></script>
 </body>
 </html>
