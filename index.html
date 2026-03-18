@@ -104,7 +104,7 @@
                 <div class="product-info">
                     <div class="product-name">Buku Yasin SoftCover 64 Hal</div>
                     <div class="product-price">Rp. 50.000</div>
-                    <button class="btn btn-primary btn-small" onclick="addToCart('Buku Yasin SoftCover 64 Hal', 50000)">Pesan Sekarang</button>
+                    <button class="btn btn-primary btn-small" onclick="tambahKeKeranjang(event, 'Buku Yasin SoftCover 64 Hal', 50000)">Pesan Sekarang</button>
                 </div>
             </div>
 
@@ -113,7 +113,7 @@
                 <div class="product-info">
                     <div class="product-name">Buku Yasin SoftCover 96 Hal</div>
                     <div class="product-price">Rp. 50.000</div>
-                    <button class="btn btn-primary btn-small" onclick="addToCart('Buku Yasin SoftCover 96 Hal', 50000)">Pesan Sekarang</button>
+                    <button class="btn btn-primary btn-small" onclick="tambahKeKeranjang(event, 'Buku Yasin SoftCover 96 Hal', 50000)">Pesan Sekarang</button>
                 </div>
             </div>
 
@@ -122,7 +122,7 @@
                 <div class="product-info">
                     <div class="product-name">Buku Yasin HardCover 128 Hal</div>
                     <div class="product-price">Rp. 75.000</div>
-                    <button class="btn btn-primary btn-small" onclick="addToCart('Buku Yasin HardCover 128 Hal', 75000)">Pesan Sekarang</button>
+                    <button class="btn btn-primary btn-small" onclick="tambahKeKeranjang(event, 'Buku Yasin HardCover 128 Hal', 75000)">Pesan Sekarang</button>
                 </div>
             </div>
 
@@ -131,7 +131,7 @@
                 <div class="product-info">
                     <div class="product-name">Buku Yasin HardCover Bludru</div>
                     <div class="product-price">Rp. 100.000</div>
-                    <button class="btn btn-primary btn-small" onclick="addToCart('Buku Yasin HardCover Bludru', 100000)">Pesan Sekarang</button>
+                    <button class="btn btn-primary btn-small" onclick="tambahKeKeranjang(event, 'Buku Yasin HardCover Bludru', 100000)">Pesan Sekarang</button>
                 </div>
             </div>
         </div>
@@ -139,19 +139,17 @@
 
     <!-- CTA SECTION -->
     <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <div class="cta-text">
-                    <h3>Mari Berikan Doa Terbaik untuk Almarhum / Almarhumah dengan Buku Yasin dan Tahlil</h3>
-                </div>
-                <a href="https://api.whatsapp.com/send?phone=6287810860755&text=Halo%20Admin%20Saya%20Mau%20Order%20Buku%20Yasin" class="btn btn-cta" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Hubungi Kami
-                </a>
+        <div class="cta-content">
+            <div class="cta-text">
+                <h3>Mari Berikan Doa Terbaik untuk Almarhum / Almarhumah dengan Buku Yasin dan Tahlil</h3>
             </div>
+            <a href="https://api.whatsapp.com/send?phone=6287810860755&text=Halo%20Admin%20Saya%20Mau%20Order%20Buku%20Yasin" class="btn btn-cta" target="_blank">
+                <i class="fab fa-whatsapp"></i> Hubungi Kami
+            </a>
         </div>
     </section>
 
-    <!-- FOOTER -->
+<!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -195,8 +193,6 @@
             </div>
         </div>
     </footer>
-
-    <script src="js/cart.js"></script>
-    <script src="js/main.js"></script>
+       <script src="js/app.js"></script>
 </body>
 </html>
