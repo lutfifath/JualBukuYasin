@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Jual Buku Yasin dan Tahlil berkualitas dengan harga terjangkau">
     <title>Produk - Jual Buku Yasin</title>
+     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+   
 </head>
 <body>
     <!-- HEADER -->
@@ -45,16 +46,19 @@
 
         <!-- FILTER BUTTONS -->
         <div class="filter-buttons">
-            <button class="filter-btn active" onclick="filterProducts('all')">Show All</button>
-            <button class="filter-btn" onclick="filterProducts('softcover')">Buku Yasin SoftCover</button>
-            <button class="filter-btn" onclick="filterProducts('hardcover')">Buku Yasin HardCover</button>
+            <button class="filter-btn active" onclick="filterProducts(event, 'all')">Show All</button>
+            <button class="filter-btn" onclick="filterProducts(event, 'softcover')">Buku Yasin SoftCover</button>
+            <button class="filter-btn" onclick="filterProducts(event, 'hardcover')">Buku Yasin HardCover</button>
         </div>
 
         <!-- PRODUCTS CONTAINER -->
         <div class="products-section" id="productsContainer"></div>
 
-        <!-- CTA SECTION -->
-        <section class="cta-section">
+       </div>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="container">
             <div class="cta-content">
                 <div class="cta-text">
                     <h3>Mari Berikan Doa Terbaik untuk Almarhum / Almarhumah dengan Buku Yasin dan Tahlil</h3>
@@ -63,8 +67,8 @@
                     <i class="fab fa-whatsapp"></i> Hubungi Kami
                 </a>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
     <!-- FOOTER -->
     <footer>
@@ -111,95 +115,6 @@
         </div>
     </footer>
 
-    <script src="js/cart.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-        // Data produk
-        const products = [
-            { id: 1, name: 'Buku Yasin SoftCover 64 Hal', price: 50000, category: 'softcover' },
-            { id: 2, name: 'Buku Yasin SoftCover 96 Hal', price: 50000, category: 'softcover' },
-            { id: 3, name: 'Buku Yasin SoftCover 128 Hal', price: 60000, category: 'softcover' },
-            { id: 4, name: 'Buku Yasin SoftCover Emboss', price: 70000, category: 'softcover' },
-            { id: 5, name: 'Buku Yasin HardCover 128 Hal', price: 75000, category: 'hardcover' },
-            { id: 6, name: 'Buku Yasin HardCover Bludru', price: 100000, category: 'hardcover' },
-            { id: 7, name: 'Buku Yasin HardCover Emboss Emas', price: 120000, category: 'hardcover' },
-            { id: 8, name: 'Buku Yasin HardCover Premium', price: 150000, category: 'hardcover' }
-        ];
-
-        let currentFilter = 'all';
-
-        function filterProducts(category) {
-            currentFilter = category;
-            
-            // Update tombol filter
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            displayProducts();
-        }
-
-        function displayProducts() {
-            const container = document.getElementById('productsContainer');
-            let filteredProducts = products;
-            
-            if (currentFilter !== 'all') {
-                filteredProducts = products.filter(p => p.category === currentFilter);
-            }
-
-            let html = '';
-            
-            // Group by category
-            const categories = {};
-            filteredProducts.forEach(product => {
-                if (!categories[product.category]) {
-                    categories[product.category] = [];
-                }
-                categories[product.category].push(product);
-            });
-
-            // Display "Show All" section jika filter all
-            if (currentFilter === 'all') {
-                html += '<div class="category-section">';
-                html += '<h3 class="category-title">Semua Produk</h3>';
-                html += '<div class="products-grid">';
-                products.forEach(product => {
-                    html += createProductCard(product);
-                });
-                html += '</div></div>';
-            } else {
-                // Display filtered category
-                for (const [category, items] of Object.entries(categories)) {
-                    const categoryTitle = category === 'softcover' ? 'Buku Yasin SoftCover' : 'Buku Yasin HardCover';
-                    html += '<div class="category-section">';
-                    html += `<h3 class="category-title">${categoryTitle}</h3>`;
-                    html += '<div class="products-grid">';
-                    items.forEach(product => {
-                        html += createProductCard(product);
-                    });
-                    html += '</div></div>';
-                }
-            }
-
-            container.innerHTML = html;
-        }
-
-        function createProductCard(product) {
-            return `
-                <div class="product-card">
-                    <div class="product-image"></div>
-                    <div class="product-info">
-                        <div class="product-name">${product.name}</div>
-                        <div class="product-price">Rp. ${product.price.toLocaleString('id-ID')}</div>
-                        <button class="btn btn-primary btn-small" onclick="addToCart('${product.name}', ${product.price})">Pesan Sekarang</button>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Initialize
-        displayProducts();
-    </script>
+        <script src="js/app.js"></script>
 </body>
 </html>
